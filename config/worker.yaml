@@ -1,0 +1,10 @@
+worker:
+  id: 1
+  port: 50052
+  address: "localhost"
+  scheduler_addr: "localhost:50051"
+  etcd_endpoints: "localhost:2379"
+  heartbeat_interval: 5
+  max_concurrent_tasks: 10
+  log_level: info
+  log_dir: ./logs

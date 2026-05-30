@@ -1,0 +1,5 @@
+gateway:
+  port: 8080
+  log_level: info
+  log_dir: ./logs
+  scheduler_addr: "localhost:50051"

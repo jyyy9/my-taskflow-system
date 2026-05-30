@@ -1,0 +1,5 @@
+tracker:
+  port: 50053
+  redis_addr: "localhost:6379"
+  log_level: info
+  log_dir: ./logs

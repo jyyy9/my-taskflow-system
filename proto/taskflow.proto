@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+package taskflow;
+
+enum TaskType {
+    VIDEO = 0;
+    IMAGE = 1;
+    DATA_EXPORT = 2;
+}
+
+enum TaskPriority {
+    LOW = 0;
+    MEDIUM = 1;
+    HIGH = 2;
+}
+
+enum TaskStatus {
+    PENDING = 0;
+    RUNNING = 1;
+    SUCCESS = 2;
+    FAILED = 3;
+}
+
+message Task {
+    string id = 1;
+    TaskType type = 2;
+    TaskPriority priority = 3;
+    string data = 4;
+    int64 created_at = 5;
+    int64 started_at = 6;
+    int64 finished_at = 7;
+    TaskStatus status = 8;
+    int32 retry_count = 9;
+    string error_message = 10;
+    string result = 11;
+}
+
+message SubmitTaskRequest {
+    TaskType type = 1;
+    TaskPriority priority = 2;
+    string data = 3;
+}
+
+message SubmitTaskReply {
+    bool success = 1;
+    string task_id = 2;
+    string message = 3;
+}
+
+message TaskStatusRequest {
+    string task_id = 1;
+}
+
+message TaskStatusReply {
+    bool success = 1;
+    Task task = 2;
+    string message = 3;
+}
+
+message ExecuteTaskRequest {
+    string task_id = 1;
+    TaskType type = 2;
+    string data = 3;
+    int32 timeout_seconds = 4;
+}
+
+message ExecuteTaskReply {
+    bool success = 1;
+    string task_id = 2;
+    string result = 3;
+    string error_message = 4;
+}
+
+message HeartbeatRequest {
+    string worker_id = 1;
+    int32 current_load = 2;
+    string status = 3;
+    int64 timestamp = 4;
+}
+
+message HeartbeatReply {
+    bool success = 1;
+    string message = 2;
+}
+
+message WorkerInfo {
+    string worker_id = 1;
+    string address = 2;
+    int32 port = 3;
+    int32 current_load = 4;
+    string status = 5;
+    int64 last_heartbeat = 6;
+}
+
+message RegisterWorkerRequest {
+    string worker_id = 1;
+    string address = 2;
+    int32 port = 3;
+}
+
+message RegisterWorkerReply {
+    bool success = 1;
+    string message = 2;
+}
+
+message GetWorkersRequest {}
+
+message GetWorkersReply {
+    repeated WorkerInfo workers = 1;
+}
+
+message QueryTaskRequest {
+    string task_id = 1;
+}
+
+message QueryTaskReply {
+    bool success = 1;
+    Task task = 2;
+    string message = 3;
+}
+
+message GetStatsRequest {}
+
+message WorkerStats {
+    string worker_id = 1;
+    int32 total_tasks = 2;
+    int32 success_tasks = 3;
+    int32 failed_tasks = 4;
+    double avg_execution_time_ms = 5;
+}
+
+message GetStatsReply {
+    int32 total_tasks = 1;
+    int32 pending_tasks = 2;
+    int32 running_tasks = 3;
+    int32 success_tasks = 4;
+    int32 failed_tasks = 5;
+    repeated WorkerStats worker_stats = 6;
+    int64 timestamp = 7;
+}
+
+service SchedulerService {
+    rpc SubmitTask(SubmitTaskRequest) returns (SubmitTaskReply);
+    rpc GetTaskStatus(TaskStatusRequest) returns (TaskStatusReply);
+    rpc RegisterWorker(RegisterWorkerRequest) returns (RegisterWorkerReply);
+    rpc GetWorkers(GetWorkersRequest) returns (GetWorkersReply);
+}
+
+service WorkerService {
+    rpc ExecuteTask(ExecuteTaskRequest) returns (ExecuteTaskReply);
+    rpc Heartbeat(HeartbeatRequest) returns (HeartbeatReply);
+}
+
+service TrackerService {
+    rpc QueryTask(QueryTaskRequest) returns (QueryTaskReply);
+}
+
+service StatsService {
+    rpc GetStats(GetStatsRequest) returns (GetStatsReply);
+}

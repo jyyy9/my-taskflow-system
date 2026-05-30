@@ -1,0 +1,9 @@
+scheduler:
+  port: 50051
+  load_balance: "least_connection"
+  worker_check_interval: 5
+  task_timeout_seconds: 60
+  etcd_endpoints: "localhost:2379"
+  redis_addr: "localhost:6379"
+  log_level: info
+  log_dir: ./logs
