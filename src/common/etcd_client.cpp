@@ -407,7 +407,7 @@ void ServiceRegistry::init(const std::string& etcd_endpoints) {
         client_.reset();
     }
     
-    client_ = std::make_unique<EtcdClient>(etcd_endpoints);
+    client_ = std::unique_ptr<EtcdClient>(new EtcdClient(etcd_endpoints));
     client_->connect();
     
     LOG_INFO("ServiceRegistry initialized with etcd: {}", etcd_endpoints);

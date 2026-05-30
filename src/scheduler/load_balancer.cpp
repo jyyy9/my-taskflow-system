@@ -47,8 +47,8 @@ void LoadBalancer::updateWorkers(const std::vector<ServiceInfo>& services) {
             
             workers_[service.id] = node;
             
-            circuit_breakers_[service.id] = std::make_unique<CircuitBreaker>(
-                service.id, CircuitBreaker::Config{3, 30, 1}
+            circuit_breakers_[service.id] = std::unique_ptr<CircuitBreaker>(
+                new CircuitBreaker(service.id, CircuitBreaker::Config{3, 30, 1})
             );
             
             LOG_INFO("Worker added: {} at {}:{}", service.id, service.address, service.port);

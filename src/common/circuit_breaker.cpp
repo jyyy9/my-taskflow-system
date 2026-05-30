@@ -123,9 +123,8 @@ CircuitBreaker* CircuitBreakerManager::getOrCreateBreaker(const std::string& nam
     if (it != breakers_.end()) {
         return it->second.get();
     }
-    auto breaker = std::make_unique<CircuitBreaker>(name, config);
-    CircuitBreaker* ptr = breaker.get();
-    breakers_[name] = std::move(breaker);
+    CircuitBreaker* ptr = new CircuitBreaker(name, config);
+    breakers_[name] = std::unique_ptr<CircuitBreaker>(ptr);
     LOG_INFO("Created circuit breaker: {}", name);
     return ptr;
 }
