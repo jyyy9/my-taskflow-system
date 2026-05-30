@@ -111,22 +111,6 @@ curl http://localhost:8080/workers
 curl http://localhost:8080/health
 ```
 
-## 测试说明
-
-### 运行API测试
-
-```bash
-chmod +x scripts/test_api.sh
-./scripts/test_api.sh
-```
-
-### 运行压力测试
-
-```bash
-chmod +x scripts/stress_test.sh
-./scripts/stress_test.sh 1000 10
-```
-
 ## 任务类型
 
 - `video` - 视频转码任务
