@@ -4,7 +4,7 @@
 
 ## 系统架构
 
-![image-20260531023032441](C:\Users\19857\AppData\Roaming\Typora\typora-user-images\image-20260531023032441.png)                   
+​         ![](D:\taskflow-system\1.png)      
 
 ## 服务组件
 
