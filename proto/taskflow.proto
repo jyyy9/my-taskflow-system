@@ -3,9 +3,10 @@ syntax = "proto3";
 package taskflow;
 
 enum TaskType {
-    VIDEO = 0;
-    IMAGE = 1;
-    DATA_EXPORT = 2;
+    ORDER_DISPATCH = 0;
+    PERSONNEL_SCHEDULE = 1;
+    MESSAGE_NOTIFY = 2;
+    DATA_STATS = 3;
 }
 
 enum TaskPriority {

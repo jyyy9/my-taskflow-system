@@ -79,49 +79,64 @@ private:
         
         switch (task_type) {
             case 0:
-                return simulateVideoTranscode(data, timeout);
+                return simulateOrderDispatch(data, timeout);
             case 1:
-                return simulateImageProcessing(data, timeout);
+                return simulatePersonnelSchedule(data, timeout);
             case 2:
-                return simulateDataExport(data, timeout);
+                return simulateMessageNotify(data, timeout);
+            case 3:
+                return simulateDataStats(data, timeout);
             default:
                 return simulateGenericTask(data, timeout);
         }
     }
     
-    std::string simulateVideoTranscode(const std::string& input, int timeout) {
-        LOG_INFO("Simulating video transcoding for: {}", input);
-        
-        int duration = std::min(timeout, 10);
-        std::this_thread::sleep_for(std::chrono::seconds(duration));
-        
-        std::ostringstream result;
-        result << "Video transcoding completed for " << input 
-               << ". Output: " << input << ".mp4 (720p)";
-        return result.str();
-    }
-    
-    std::string simulateImageProcessing(const std::string& input, int timeout) {
-        LOG_INFO("Simulating image processing for: {}", input);
+    std::string simulateOrderDispatch(const std::string& order_data, int timeout) {
+        LOG_INFO("Simulating order dispatch for: {}", order_data);
         
         int duration = std::min(timeout, 5);
         std::this_thread::sleep_for(std::chrono::seconds(duration));
         
         std::ostringstream result;
-        result << "Image processed: " << input 
-               << ". Thumbnail generated. Filters applied.";
+        result << "Order dispatched successfully. Order: " << order_data 
+               << ". Driver assigned: D-" << (rand() % 1000 + 1);
         return result.str();
     }
     
-    std::string simulateDataExport(const std::string& query, int timeout) {
-        LOG_INFO("Simulating data export with query: {}", query);
+    std::string simulatePersonnelSchedule(const std::string& personnel_data, int timeout) {
+        LOG_INFO("Simulating personnel scheduling for: {}", personnel_data);
         
         int duration = std::min(timeout, 8);
         std::this_thread::sleep_for(std::chrono::seconds(duration));
         
         std::ostringstream result;
-        result << "Data export completed. Rows exported: " << (rand() % 10000 + 1000)
-               << ". Format: CSV";
+        result << "Personnel scheduling completed. Personnel: " << personnel_data 
+               << ". Schedule generated for next 7 days.";
+        return result.str();
+    }
+    
+    std::string simulateMessageNotify(const std::string& message_data, int timeout) {
+        LOG_INFO("Simulating message notification for: {}", message_data);
+        
+        int duration = std::min(timeout, 2);
+        std::this_thread::sleep_for(std::chrono::seconds(duration));
+        
+        std::ostringstream result;
+        result << "Message notification sent. Recipients: " << (rand() % 500 + 50)
+               << ". Delivery rate: 98%";
+        return result.str();
+    }
+    
+    std::string simulateDataStats(const std::string& stats_data, int timeout) {
+        LOG_INFO("Simulating data statistics for: {}", stats_data);
+        
+        int duration = std::min(timeout, 10);
+        std::this_thread::sleep_for(std::chrono::seconds(duration));
+        
+        std::ostringstream result;
+        result << "Data statistics completed. Period: " << stats_data
+               << ". Total orders: " << (rand() % 10000 + 5000)
+               << ". Total revenue: ¥" << (rand() % 1000000 + 100000);
         return result.str();
     }
     

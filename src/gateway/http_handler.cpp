@@ -79,12 +79,14 @@ bool HttpHandler::handleSubmitTask(const HttpRequest& request, HttpResponse& res
     
     if (std::regex_search(body, match, type_regex)) {
         std::string type = match[1].str();
-        if (type == "video") {
-            grpc_request.set_type(TaskType::VIDEO);
-        } else if (type == "image") {
-            grpc_request.set_type(TaskType::IMAGE);
-        } else if (type == "data") {
-            grpc_request.set_type(TaskType::DATA_EXPORT);
+        if (type == "order") {
+            grpc_request.set_type(TaskType::ORDER_DISPATCH);
+        } else if (type == "personnel") {
+            grpc_request.set_type(TaskType::PERSONNEL_SCHEDULE);
+        } else if (type == "message") {
+            grpc_request.set_type(TaskType::MESSAGE_NOTIFY);
+        } else if (type == "stats") {
+            grpc_request.set_type(TaskType::DATA_STATS);
         }
     }
     
