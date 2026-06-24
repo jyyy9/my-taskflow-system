@@ -43,42 +43,67 @@ set(GRPC_LIBRARIES ${GRPCPP_LIBRARY} ${GRPC_LIBRARY} ${GPR_LIBRARY})
 
 message(STATUS "Found gRPC: ${GRPCPP_LIBRARY}")
 
-find_path(SPDLOG_INCLUDE_DIRS "spdlog/spdlog.h")
-find_path(YAML_CPP_INCLUDE_DIRS "yaml-cpp/yaml.h")
 find_path(BOOST_INCLUDE_DIRS "boost/asio.hpp")
 
-if(NOT SPDLOG_INCLUDE_DIRS)
-    message(WARNING "spdlog not found, will use FetchContent")
+find_package(yaml-cpp QUIET)
+find_package(spdlog QUIET)
+
+if(NOT yaml-cpp_FOUND)
+    find_path(YAML_CPP_INCLUDE_DIRS "yaml-cpp/yaml.h")
+    find_library(YAML_CPP_LIBRARY NAMES yaml-cpp)
+    if(YAML_CPP_INCLUDE_DIRS AND YAML_CPP_LIBRARY)
+        set(yaml-cpp_FOUND TRUE)
+        message(STATUS "Found yaml-cpp: ${YAML_CPP_LIBRARY}")
+    endif()
 endif()
 
-if(NOT YAML_CPP_INCLUDE_DIRS)
-    message(WARNING "yaml-cpp not found, will use FetchContent")
+if(NOT spdlog_FOUND)
+    find_path(SPDLOG_INCLUDE_DIRS "spdlog/spdlog.h")
+    find_library(SPDLOG_LIBRARY NAMES spdlog)
+    if(SPDLOG_INCLUDE_DIRS AND SPDLOG_LIBRARY)
+        set(spdlog_FOUND TRUE)
+        message(STATUS "Found spdlog: ${SPDLOG_LIBRARY}")
+    endif()
 endif()
 
-include(FetchContent)
+if(NOT yaml-cpp_FOUND OR NOT spdlog_FOUND)
+    message(STATUS "Some dependencies not found, using FetchContent...")
+    include(FetchContent)
 
-FetchContent_Declare(
-    spdlog
-    GIT_REPOSITORY https://github.com/gabime/spdlog.git
-    GIT_TAG v1.12.0
-)
-FetchContent_Declare(
-    yaml_cpp
-    GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
-    GIT_TAG yaml-cpp-0.8.0
-)
+    if(NOT spdlog_FOUND)
+        FetchContent_Declare(
+            spdlog
+            GIT_REPOSITORY https://github.com/gabime/spdlog.git
+            GIT_TAG v1.11.0
+        )
+        FetchContent_MakeAvailable(spdlog)
+    endif()
 
-FetchContent_MakeAvailable(spdlog yaml_cpp)
+    if(NOT yaml-cpp_FOUND)
+        FetchContent_Declare(
+            yaml_cpp
+            GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+            GIT_TAG yaml-cpp-0.7.0
+        )
+        FetchContent_MakeAvailable(yaml_cpp)
+    endif()
+endif()
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${Protobuf_INCLUDE_DIRS}
     ${GRPC_INCLUDE_DIRS}
-    ${SPDLOG_INCLUDE_DIRS}
-    ${YAML_CPP_INCLUDE_DIRS}
     ${BOOST_INCLUDE_DIRS}
     ${CMAKE_CURRENT_BINARY_DIR}/proto
 )
+
+if(SPDLOG_INCLUDE_DIRS)
+    include_directories(${SPDLOG_INCLUDE_DIRS})
+endif()
+
+if(YAML_CPP_INCLUDE_DIRS)
+    include_directories(${YAML_CPP_INCLUDE_DIRS})
+endif()
 
 file(GLOB PROTO_FILES ${CMAKE_CURRENT_SOURCE_DIR}/proto/*.proto)
 file(GLOB COMMON_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/common/*.h)
@@ -124,12 +149,22 @@ add_library(taskflow_common STATIC
 )
 target_link_libraries(taskflow_common
     Threads::Threads
-    spdlog::spdlog
-    yaml-cpp
     ${Protobuf_LIBRARIES}
     ${GRPC_LIBRARIES}
     taskflow_proto
 )
+
+if(TARGET spdlog::spdlog)
+    target_link_libraries(taskflow_common spdlog::spdlog)
+elseif(SPDLOG_LIBRARY)
+    target_link_libraries(taskflow_common ${SPDLOG_LIBRARY})
+endif()
+
+if(TARGET yaml-cpp)
+    target_link_libraries(taskflow_common yaml-cpp)
+elseif(YAML_CPP_LIBRARY)
+    target_link_libraries(taskflow_common ${YAML_CPP_LIBRARY})
+endif()
 
 set(GATEWAY_SOURCES
     src/gateway.cpp
