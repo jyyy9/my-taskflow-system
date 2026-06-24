@@ -45,8 +45,8 @@ public:
     
     int64_t registerService(const std::string& name, const std::string& id, 
                             const std::string& address, int port,
-                            const std::map<std::string, std::string>& metadata = {},
-                            int ttl_seconds = 10);
+                            const std::map<std::string, std::string>& metadata,
+                            int ttl_seconds);
     
     bool deregisterService(const std::string& name, const std::string& id);
     
@@ -75,11 +75,11 @@ public:
     
     bool registerService(const std::string& name, const std::string& id,
                        const std::string& address, int port,
-                       const std::map<std::string, std::string>& metadata = {});
+                       const std::map<std::string, std::string>& metadata);
     
     bool deregisterService(const std::string& name, const std::string& id);
     
-    bool startRefreshLoop(const std::string& name, const std::string& id, int interval_seconds = 5);
+    bool startRefreshLoop(const std::string& name, const std::string& id, int interval_seconds);
     void stopRefreshLoop();
     
     std::vector<ServiceInfo> getServices(const std::string& name);

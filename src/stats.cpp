@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
     }
     
     if (!taskflow::ServiceRegistry::instance().registerService(
-            "stats", "stats-1", "localhost", config.port)) {
+            "stats", "stats-1", "localhost", config.port, {})) {
         LOG_WARN("Failed to register stats service with etcd");
     } else {
         taskflow::ServiceRegistry::instance().startRefreshLoop("stats", "stats-1", 5);

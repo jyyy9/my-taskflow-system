@@ -247,7 +247,7 @@ int main(int argc, char* argv[]) {
     std::string addr = "0.0.0.0:" + std::to_string(config.port);
     
     if (!taskflow::ServiceRegistry::instance().registerService(
-            "scheduler", "scheduler-1", "localhost", config.port)) {
+            "scheduler", "scheduler-1", "localhost", config.port, {})) {
         LOG_ERROR("Failed to register scheduler with etcd");
     } else {
         taskflow::ServiceRegistry::instance().startRefreshLoop("scheduler", "scheduler-1", 5);

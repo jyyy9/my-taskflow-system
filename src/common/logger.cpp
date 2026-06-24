@@ -1,5 +1,7 @@
 #include "common/logger.h"
-#include <filesystem>
+#include <iostream>
+#include <sys/stat.h>
+#include <cstdlib>
 
 namespace taskflow {
 
@@ -10,7 +12,8 @@ Logger& Logger::instance() {
 
 void Logger::init(const std::string& service_name, const std::string& log_dir) {
     try {
-        std::filesystem::create_directories(log_dir);
+        // Create log directory using POSIX mkdir (C++11 compatible)
+        mkdir(log_dir.c_str(), 0755);
         
         auto rotating_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
             log_dir + "/" + service_name + ".log",

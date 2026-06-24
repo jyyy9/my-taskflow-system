@@ -4,11 +4,6 @@
 
 namespace taskflow {
 
-ConfigLoader& ConfigLoader::instance() {
-    static ConfigLoader instance;
-    return instance;
-}
-
 bool ConfigLoader::load(const std::string& config_path) {
     try {
         config_ = YAML::LoadFile(config_path);

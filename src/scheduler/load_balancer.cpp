@@ -47,8 +47,12 @@ void LoadBalancer::updateWorkers(const std::vector<ServiceInfo>& services) {
             
             workers_[service.id] = node;
             
+            CircuitBreaker::Config cb_config;
+            cb_config.failure_threshold = 3;
+            cb_config.recovery_timeout_seconds = 30;
+            cb_config.success_threshold = 1;
             circuit_breakers_[service.id] = std::unique_ptr<CircuitBreaker>(
-                new CircuitBreaker(service.id, CircuitBreaker::Config{3, 30, 1})
+                new CircuitBreaker(service.id, cb_config)
             );
             
             LOG_INFO("Worker added: {} at {}:{}", service.id, service.address, service.port);

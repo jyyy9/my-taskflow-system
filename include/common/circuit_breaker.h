@@ -5,6 +5,8 @@
 #include <atomic>
 #include <chrono>
 #include <functional>
+#include <map>
+#include <memory>
 
 namespace taskflow {
 
@@ -17,12 +19,14 @@ enum class CircuitState {
 class CircuitBreaker {
 public:
     struct Config {
-        int failure_threshold = 3;
-        int recovery_timeout_seconds = 30;
-        int success_threshold = 1;
+        int failure_threshold;
+        int recovery_timeout_seconds;
+        int success_threshold;
+        
+        Config() : failure_threshold(3), recovery_timeout_seconds(30), success_threshold(1) {}
     };
     
-    CircuitBreaker(const std::string& name, const Config& config = Config());
+    CircuitBreaker(const std::string& name, const Config& config);
     
     bool allowRequest();
     void recordSuccess();
@@ -56,7 +60,7 @@ public:
     static CircuitBreakerManager& instance();
     
     CircuitBreaker* getBreaker(const std::string& name);
-    CircuitBreaker* getOrCreateBreaker(const std::string& name, const CircuitBreaker::Config& config = CircuitBreaker::Config());
+    CircuitBreaker* getOrCreateBreaker(const std::string& name, const CircuitBreaker::Config& config);
     
     void removeBreaker(const std::string& name);
     void clear();
