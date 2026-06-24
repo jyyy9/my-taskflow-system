@@ -195,7 +195,10 @@ std::string LoadBalancer::consistentHashSelect(const std::string& task_id) {
     }
     
     std::sort(circles.begin(), circles.end(),
-              [](const auto& a, const auto& b) { return a.first < b.first; });
+              [](const std::pair<uint64_t, std::string>& a, 
+                 const std::pair<uint64_t, std::string>& b) { 
+                  return a.first < b.first; 
+              });
     
     for (const auto& circle : circles) {
         if (hash_value <= circle.first) {
