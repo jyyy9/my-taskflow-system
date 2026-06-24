@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtaskflow_proto.a CMakeFiles/taskflow_proto.dir/proto/taskflow.pb.cc.o CMakeFiles/taskflow_proto.dir/proto/taskflow.grpc.pb.cc.o
+/usr/bin/ranlib libtaskflow_proto.a

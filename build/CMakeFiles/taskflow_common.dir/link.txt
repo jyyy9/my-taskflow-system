@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtaskflow_common.a CMakeFiles/taskflow_common.dir/src/common/circuit_breaker.cpp.o CMakeFiles/taskflow_common.dir/src/common/config_loader.cpp.o CMakeFiles/taskflow_common.dir/src/common/etcd_client.cpp.o CMakeFiles/taskflow_common.dir/src/common/logger.cpp.o CMakeFiles/taskflow_common.dir/src/common/redis_client.cpp.o CMakeFiles/taskflow_common.dir/src/common/snowflake.cpp.o
+/usr/bin/ranlib libtaskflow_common.a
