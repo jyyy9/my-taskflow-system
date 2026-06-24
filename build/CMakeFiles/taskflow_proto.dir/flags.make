@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto
+CXX_INCLUDES = -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build
 
 CXX_FLAGS = -O3 -DNDEBUG -std=gnu++11
 
