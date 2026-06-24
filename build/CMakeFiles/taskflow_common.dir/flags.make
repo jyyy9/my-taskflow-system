@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
 
-CXX_INCLUDES = -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto
+CXX_INCLUDES = -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build
 
 CXX_FLAGS = -O3 -DNDEBUG -std=gnu++11
 
