@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/wangjiayi/my-taskflow-system/src/gateway.cpp" "CMakeFiles/gateway.dir/src/gateway.cpp.o" "gcc" "CMakeFiles/gateway.dir/src/gateway.cpp.o.d"
+  "/home/wangjiayi/my-taskflow-system/src/gateway/http_handler.cpp" "CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.o" "gcc" "CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.o.d"
   )
 
 # Targets to which this target links.
