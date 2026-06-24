@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/gateway.dir/src/gateway.cpp.o"
   "CMakeFiles/gateway.dir/src/gateway.cpp.o.d"
+  "CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.o"
+  "CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.o.d"
   "gateway"
   "gateway.pdb"
 )

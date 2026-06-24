@@ -433,6 +433,30 @@ src/gateway.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gateway.dir/build.make CMakeFiles/gateway.dir/src/gateway.cpp.s
 .PHONY : src/gateway.cpp.s
 
+src/gateway/http_handler.o: src/gateway/http_handler.cpp.o
+.PHONY : src/gateway/http_handler.o
+
+# target to build an object file
+src/gateway/http_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gateway.dir/build.make CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.o
+.PHONY : src/gateway/http_handler.cpp.o
+
+src/gateway/http_handler.i: src/gateway/http_handler.cpp.i
+.PHONY : src/gateway/http_handler.i
+
+# target to preprocess a source file
+src/gateway/http_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gateway.dir/build.make CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.i
+.PHONY : src/gateway/http_handler.cpp.i
+
+src/gateway/http_handler.s: src/gateway/http_handler.cpp.s
+.PHONY : src/gateway/http_handler.s
+
+# target to generate assembly for a file
+src/gateway/http_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gateway.dir/build.make CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.s
+.PHONY : src/gateway/http_handler.cpp.s
+
 src/scheduler.o: src/scheduler.cpp.o
 .PHONY : src/scheduler.o
 
@@ -572,6 +596,9 @@ help:
 	@echo "... src/gateway.o"
 	@echo "... src/gateway.i"
 	@echo "... src/gateway.s"
+	@echo "... src/gateway/http_handler.o"
+	@echo "... src/gateway/http_handler.i"
+	@echo "... src/gateway/http_handler.s"
 	@echo "... src/scheduler.o"
 	@echo "... src/scheduler.i"
 	@echo "... src/scheduler.s"

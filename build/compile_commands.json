@@ -46,6 +46,11 @@
 },
 {
   "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/gateway.dir/src/gateway/http_handler.cpp.o -c /home/wangjiayi/my-taskflow-system/src/gateway/http_handler.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/gateway/http_handler.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
   "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/scheduler.dir/src/scheduler.cpp.o -c /home/wangjiayi/my-taskflow-system/src/scheduler.cpp",
   "file": "/home/wangjiayi/my-taskflow-system/src/scheduler.cpp"
 },

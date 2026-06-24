@@ -93,7 +93,7 @@ clean: CMakeFiles/stats.dir/clean
 CMakeFiles/taskflow_proto.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taskflow_proto.dir/build.make CMakeFiles/taskflow_proto.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taskflow_proto.dir/build.make CMakeFiles/taskflow_proto.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=14,15,16,17 "Built target taskflow_proto"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=15,16,17,18 "Built target taskflow_proto"
 .PHONY : CMakeFiles/taskflow_proto.dir/all
 
 # Build rule for subdir invocation for target.
@@ -119,7 +119,7 @@ CMakeFiles/taskflow_proto.dir/clean:
 CMakeFiles/taskflow_common.dir/all: CMakeFiles/taskflow_proto.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taskflow_common.dir/build.make CMakeFiles/taskflow_common.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taskflow_common.dir/build.make CMakeFiles/taskflow_common.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=7,8,9,10,11,12,13 "Built target taskflow_common"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=8,9,10,11,12,13,14 "Built target taskflow_common"
 .PHONY : CMakeFiles/taskflow_common.dir/all
 
 # Build rule for subdir invocation for target.
@@ -146,12 +146,12 @@ CMakeFiles/gateway.dir/all: CMakeFiles/taskflow_proto.dir/all
 CMakeFiles/gateway.dir/all: CMakeFiles/taskflow_common.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gateway.dir/build.make CMakeFiles/gateway.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gateway.dir/build.make CMakeFiles/gateway.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=1,2 "Built target gateway"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=1,2,3 "Built target gateway"
 .PHONY : CMakeFiles/gateway.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/gateway.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wangjiayi/my-taskflow-system/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wangjiayi/my-taskflow-system/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/gateway.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/wangjiayi/my-taskflow-system/build/CMakeFiles 0
 .PHONY : CMakeFiles/gateway.dir/rule
@@ -173,7 +173,7 @@ CMakeFiles/scheduler.dir/all: CMakeFiles/taskflow_proto.dir/all
 CMakeFiles/scheduler.dir/all: CMakeFiles/taskflow_common.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/scheduler.dir/build.make CMakeFiles/scheduler.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/scheduler.dir/build.make CMakeFiles/scheduler.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=3,4 "Built target scheduler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=4,5 "Built target scheduler"
 .PHONY : CMakeFiles/scheduler.dir/all
 
 # Build rule for subdir invocation for target.
@@ -200,7 +200,7 @@ CMakeFiles/worker.dir/all: CMakeFiles/taskflow_proto.dir/all
 CMakeFiles/worker.dir/all: CMakeFiles/taskflow_common.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/worker.dir/build.make CMakeFiles/worker.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/worker.dir/build.make CMakeFiles/worker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=20,21 "Built target worker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=21,22 "Built target worker"
 .PHONY : CMakeFiles/worker.dir/all
 
 # Build rule for subdir invocation for target.
@@ -227,7 +227,7 @@ CMakeFiles/tracker.dir/all: CMakeFiles/taskflow_proto.dir/all
 CMakeFiles/tracker.dir/all: CMakeFiles/taskflow_common.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker.dir/build.make CMakeFiles/tracker.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker.dir/build.make CMakeFiles/tracker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=18,19 "Built target tracker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=19,20 "Built target tracker"
 .PHONY : CMakeFiles/tracker.dir/all
 
 # Build rule for subdir invocation for target.
@@ -254,7 +254,7 @@ CMakeFiles/stats.dir/all: CMakeFiles/taskflow_proto.dir/all
 CMakeFiles/stats.dir/all: CMakeFiles/taskflow_common.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stats.dir/build.make CMakeFiles/stats.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stats.dir/build.make CMakeFiles/stats.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=5,6 "Built target stats"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wangjiayi/my-taskflow-system/build/CMakeFiles --progress-num=6,7 "Built target stats"
 .PHONY : CMakeFiles/stats.dir/all
 
 # Build rule for subdir invocation for target.
