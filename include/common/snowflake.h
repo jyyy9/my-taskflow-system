@@ -21,6 +21,7 @@ private:
     Snowflake& operator=(const Snowflake&) = delete;
     
     int64_t nextIdLocked();
+    int64_t waitNextMillis(int64_t timestamp);
     
     static constexpr int64_t kTwepoch = 1609459200000LL;
     static constexpr int64_t kWorkerIdBits = 5LL;

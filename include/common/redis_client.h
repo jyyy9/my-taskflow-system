@@ -95,7 +95,7 @@ private:
     size_t pool_size_;
     std::vector<std::shared_ptr<RedisClient>> pool_;
     std::vector<bool> in_use_;
-    std::mutex mutex_;
+    mutable std::mutex mutex_;
 };
 
 }
