@@ -28,7 +28,8 @@ public:
     bool start() {
         boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), port_);
         acceptor_.open(endpoint.protocol());
-        acceptor_.set_option(boost::asio::ip::tcp::reuse_address(true));
+        boost::asio::socket_base::reuse_address option(true);
+        acceptor_.set_option(option);
         acceptor_.bind(endpoint);
         acceptor_.listen();
         

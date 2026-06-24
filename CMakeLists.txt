@@ -152,6 +152,7 @@ target_link_libraries(taskflow_common
     ${Protobuf_LIBRARIES}
     ${GRPC_LIBRARIES}
     taskflow_proto
+    hiredis
 )
 
 if(TARGET spdlog::spdlog)

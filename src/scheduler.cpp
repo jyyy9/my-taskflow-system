@@ -279,7 +279,6 @@ int main(int argc, char* argv[]) {
                                   g_redis_pool, config.task_timeout_seconds);
     
     grpc::EnableDefaultHealthCheckService(true);
-    grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     
     grpc::ServerBuilder builder;
     builder.AddListeningPort(addr, grpc::InsecureServerCredentials());
