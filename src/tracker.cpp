@@ -22,15 +22,15 @@ void signalHandler(int signal) {
     }
 }
 
-class TrackerServiceImpl final : public TrackerService::Service {
+class TrackerServiceImpl final : public taskflow::TrackerService::Service {
 public:
     TrackerServiceImpl(std::shared_ptr<taskflow::RedisClient> redis)
         : redis_(redis) {
     }
     
     grpc::Status QueryTask(grpc::ServerContext* context,
-                           const QueryTaskRequest* request,
-                           QueryTaskReply* reply) override {
+                           const taskflow::QueryTaskRequest* request,
+                           taskflow::QueryTaskReply* reply) override {
         std::string task_id = request->task_id();
         
         taskflow::TaskInfo task = redis_->getTask(task_id);
@@ -42,15 +42,15 @@ public:
             reply->set_success(true);
             reply->set_message("Task found");
             
-            Task* task_msg = reply->mutable_task();
+            taskflow::Task* task_msg = reply->mutable_task();
             task_msg->set_id(task.id);
-            task_msg->set_type(static_cast<TaskType>(task.type));
-            task_msg->set_priority(static_cast<TaskPriority>(task.priority));
+            task_msg->set_type(static_cast<taskflow::TaskType>(task.type));
+            task_msg->set_priority(static_cast<taskflow::TaskPriority>(task.priority));
             task_msg->set_data(task.data);
             task_msg->set_created_at(task.created_at);
             task_msg->set_started_at(task.started_at);
             task_msg->set_finished_at(task.finished_at);
-            task_msg->set_status(static_cast<TaskStatus>(task.status));
+            task_msg->set_status(static_cast<taskflow::TaskStatus>(task.status));
             task_msg->set_retry_count(task.retry_count);
             task_msg->set_error_message(task.error_message);
             task_msg->set_result(task.result);

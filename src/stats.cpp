@@ -23,7 +23,7 @@ void signalHandler(int signal) {
     }
 }
 
-class StatsServiceImpl final : public StatsService::Service {
+class StatsServiceImpl final : public taskflow::StatsService::Service {
 public:
     StatsServiceImpl(std::shared_ptr<taskflow::RedisClient> redis,
                     const std::string& etcd_endpoints)
@@ -31,8 +31,8 @@ public:
     }
     
     grpc::Status GetStats(grpc::ServerContext* context,
-                         const GetStatsRequest* request,
-                         GetStatsReply* reply) override {
+                         const taskflow::GetStatsRequest* request,
+                         taskflow::GetStatsReply* reply) override {
         
         long long total_tasks = 0;
         long long pending_tasks = redis_->llen("queue:high") + 
@@ -51,7 +51,7 @@ public:
             taskflow::ServiceRegistry::instance().getServices("worker");
         
         for (const auto& worker : workers) {
-            WorkerStats* stats = reply->add_worker_stats();
+            taskflow::WorkerStats* stats = reply->add_worker_stats();
             stats->set_worker_id(worker.id);
             stats->set_total_tasks(0);
             stats->set_success_tasks(0);

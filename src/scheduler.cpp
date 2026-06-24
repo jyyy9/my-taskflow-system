@@ -29,7 +29,7 @@ void signalHandler(int signal) {
     }
 }
 
-class SchedulerServiceImpl final : public SchedulerService::Service {
+class SchedulerServiceImpl final : public taskflow::SchedulerService::Service {
 public:
     SchedulerServiceImpl(std::shared_ptr<taskflow::TaskDispatcher> dispatcher,
                          std::shared_ptr<taskflow::LoadBalancer> load_balancer)
@@ -37,8 +37,8 @@ public:
     }
     
     grpc::Status SubmitTask(grpc::ServerContext* context,
-                            const SubmitTaskRequest* request,
-                            SubmitTaskReply* reply) override {
+                            const taskflow::SubmitTaskRequest* request,
+                            taskflow::SubmitTaskReply* reply) override {
         std::string task_id = std::to_string(taskflow::Snowflake::instance().nextId());
         
         taskflow::TaskRequest task;
@@ -64,8 +64,8 @@ public:
     }
     
     grpc::Status GetTaskStatus(grpc::ServerContext* context,
-                              const TaskStatusRequest* request,
-                              TaskStatusReply* reply) override {
+                              const taskflow::TaskStatusRequest* request,
+                              taskflow::TaskStatusReply* reply) override {
         std::string task_id = request->task_id();
         
         taskflow::TaskInfo task_info = dispatcher_->getTaskInfo(task_id);
@@ -77,15 +77,15 @@ public:
             reply->set_success(true);
             reply->set_message("Task found");
             
-            Task* task = reply->mutable_task();
+            taskflow::Task* task = reply->mutable_task();
             task->set_id(task_info.id);
-            task->set_type(static_cast<TaskType>(task_info.type));
-            task->set_priority(static_cast<TaskPriority>(task_info.priority));
+            task->set_type(static_cast<taskflow::TaskType>(task_info.type));
+            task->set_priority(static_cast<taskflow::TaskPriority>(task_info.priority));
             task->set_data(task_info.data);
             task->set_created_at(task_info.created_at);
             task->set_started_at(task_info.started_at);
             task->set_finished_at(task_info.finished_at);
-            task->set_status(static_cast<TaskStatus>(task_info.status));
+            task->set_status(static_cast<taskflow::TaskStatus>(task_info.status));
             task->set_retry_count(task_info.retry_count);
             task->set_error_message(task_info.error_message);
             task->set_result(task_info.result);
@@ -95,8 +95,8 @@ public:
     }
     
     grpc::Status RegisterWorker(grpc::ServerContext* context,
-                               const RegisterWorkerRequest* request,
-                               RegisterWorkerReply* reply) override {
+                               const taskflow::RegisterWorkerRequest* request,
+                               taskflow::RegisterWorkerReply* reply) override {
         std::string worker_id = request->worker_id();
         std::string address = request->address();
         int port = request->port();
@@ -110,12 +110,12 @@ public:
     }
     
     grpc::Status GetWorkers(grpc::ServerContext* context,
-                           const GetWorkersRequest* request,
-                           GetWorkersReply* reply) override {
+                           const taskflow::GetWorkersRequest* request,
+                           taskflow::GetWorkersReply* reply) override {
         std::vector<taskflow::WorkerNode> workers = load_balancer_->getWorkers();
         
         for (const auto& worker : workers) {
-            WorkerInfo* info = reply->add_workers();
+            taskflow::WorkerInfo* info = reply->add_workers();
             info->set_worker_id(worker.id);
             info->set_address(worker.address);
             info->set_port(worker.port);

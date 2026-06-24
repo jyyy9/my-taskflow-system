@@ -24,15 +24,15 @@ void signalHandler(int signal) {
     }
 }
 
-class WorkerServiceImpl final : public WorkerService::Service {
+class WorkerServiceImpl final : public taskflow::WorkerService::Service {
 public:
     WorkerServiceImpl(const taskflow::WorkerConfig& config)
         : config_(config), current_load_(0) {
     }
     
     grpc::Status ExecuteTask(grpc::ServerContext* context,
-                             const ExecuteTaskRequest* request,
-                             ExecuteTaskReply* reply) override {
+                             const taskflow::ExecuteTaskRequest* request,
+                             taskflow::ExecuteTaskReply* reply) override {
         std::string task_id = request->task_id();
         int task_type = request->type();
         std::string data = request->data();
@@ -65,8 +65,8 @@ public:
     }
     
     grpc::Status Heartbeat(grpc::ServerContext* context,
-                          const HeartbeatRequest* request,
-                          HeartbeatReply* reply) override {
+                          const taskflow::HeartbeatRequest* request,
+                          taskflow::HeartbeatReply* reply) override {
         LOG_DEBUG("Heartbeat acknowledged");
         reply->set_success(true);
         reply->set_message("OK");
