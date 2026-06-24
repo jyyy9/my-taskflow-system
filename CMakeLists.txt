@@ -7,8 +7,41 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Threads REQUIRED)
 find_package(Protobuf REQUIRED)
-find_package(grpc REQUIRED)
-find_package(absl REQUIRED)
+
+find_program(PROTOBUF_PROTOC_EXECUTABLE protoc)
+find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin)
+
+if(NOT GRPC_CPP_PLUGIN)
+    message(FATAL_ERROR "grpc_cpp_plugin not found. Please install grpc-dev package.")
+endif()
+
+find_path(GRPC_INCLUDE_DIR grpcpp/grpcpp.h
+    PATHS /usr/include /usr/local/include
+)
+
+find_library(GRPC_LIBRARY
+    NAMES grpc
+    PATHS /usr/lib /usr/local/lib
+)
+
+find_library(GRPCPP_LIBRARY
+    NAMES grpc++
+    PATHS /usr/lib /usr/local/lib
+)
+
+find_library(GPR_LIBRARY
+    NAMES gpr
+    PATHS /usr/lib /usr/local/lib
+)
+
+if(NOT GRPC_INCLUDE_DIR OR NOT GRPCPP_LIBRARY)
+    message(FATAL_ERROR "gRPC not found. Please install libgrpc++-dev package.")
+endif()
+
+set(GRPC_INCLUDE_DIRS ${GRPC_INCLUDE_DIR})
+set(GRPC_LIBRARIES ${GRPCPP_LIBRARY} ${GRPC_LIBRARY} ${GPR_LIBRARY})
+
+message(STATUS "Found gRPC: ${GRPCPP_LIBRARY}")
 
 find_path(SPDLOG_INCLUDE_DIRS "spdlog/spdlog.h")
 find_path(YAML_CPP_INCLUDE_DIRS "yaml-cpp/yaml.h")
@@ -40,27 +73,50 @@ FetchContent_MakeAvailable(spdlog yaml_cpp)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${Protobuf_INCLUDE_DIRS}
-    ${grpc_INCLUDE_DIRS}
+    ${GRPC_INCLUDE_DIRS}
     ${SPDLOG_INCLUDE_DIRS}
     ${YAML_CPP_INCLUDE_DIRS}
     ${BOOST_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_BINARY_DIR}/proto
 )
 
 file(GLOB PROTO_FILES ${CMAKE_CURRENT_SOURCE_DIR}/proto/*.proto)
 file(GLOB COMMON_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/common/*.h)
 file(GLOB COMMON_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/common/*.cpp)
 
-protobuf_generate(
-    PROTOS ${PROTO_FILES}
-    PROTOS_OUT ${CMAKE_CURRENT_BINARY_DIR}/proto
-    PROTOS_OUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto
-)
+set(PROTO_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto)
+file(MAKE_DIRECTORY ${PROTO_OUTPUT_DIR})
 
-grpc_generate(
-    PROTOS ${PROTO_FILES}
-    OUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto
-    OUT_HEADER_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto
-)
+set(PROTO_SRCS "")
+set(PROTO_HDRS "")
+
+foreach(PROTO_FILE ${PROTO_FILES})
+    get_filename_component(PROTO_NAME ${PROTO_FILE} NAME_WE)
+    get_filename_component(PROTO_PATH ${PROTO_FILE} PATH)
+    
+    set(PROTO_SRC ${PROTO_OUTPUT_DIR}/${PROTO_NAME}.pb.cc)
+    set(PROTO_HDR ${PROTO_OUTPUT_DIR}/${PROTO_NAME}.pb.h)
+    set(GRPC_SRC ${PROTO_OUTPUT_DIR}/${PROTO_NAME}.grpc.pb.cc)
+    set(GRPC_HDR ${PROTO_OUTPUT_DIR}/${PROTO_NAME}.grpc.pb.h)
+    
+    list(APPEND PROTO_SRCS ${PROTO_SRC} ${GRPC_SRC})
+    list(APPEND PROTO_HDRS ${PROTO_HDR} ${GRPC_HDR})
+    
+    add_custom_command(
+        OUTPUT ${PROTO_SRC} ${PROTO_HDR} ${GRPC_SRC} ${GRPC_HDR}
+        COMMAND ${PROTOBUF_PROTOC_EXECUTABLE}
+        ARGS --proto_path=${PROTO_PATH}
+             --cpp_out=${PROTO_OUTPUT_DIR}
+             --grpc_out=${PROTO_OUTPUT_DIR}
+             --plugin=protoc-gen-grpc=${GRPC_CPP_PLUGIN}
+             ${PROTO_FILE}
+        DEPENDS ${PROTO_FILE}
+        COMMENT "Generating gRPC code from ${PROTO_FILE}"
+    )
+endforeach()
+
+add_library(taskflow_proto STATIC ${PROTO_SRCS} ${PROTO_HDRS})
+target_link_libraries(taskflow_proto ${GRPC_LIBRARIES} ${Protobuf_LIBRARIES})
 
 add_library(taskflow_common STATIC
     ${COMMON_HEADERS}
@@ -71,8 +127,8 @@ target_link_libraries(taskflow_common
     spdlog::spdlog
     yaml-cpp
     ${Protobuf_LIBRARIES}
-    grpc++
-    ${ETCDCPP_LIBRARIES}
+    ${GRPC_LIBRARIES}
+    taskflow_proto
 )
 
 set(GATEWAY_SOURCES
