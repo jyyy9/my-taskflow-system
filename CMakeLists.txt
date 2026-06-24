@@ -94,7 +94,7 @@ include_directories(
     ${Protobuf_INCLUDE_DIRS}
     ${GRPC_INCLUDE_DIRS}
     ${BOOST_INCLUDE_DIRS}
-    ${CMAKE_CURRENT_BINARY_DIR}/proto
+    ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 if(SPDLOG_INCLUDE_DIRS)
@@ -170,30 +170,35 @@ set(GATEWAY_SOURCES
     src/gateway.cpp
 )
 add_executable(gateway ${GATEWAY_SOURCES})
+add_dependencies(gateway taskflow_proto)
 target_link_libraries(gateway taskflow_common pthread)
 
 set(SCHEDULER_SOURCES
     src/scheduler.cpp
 )
 add_executable(scheduler ${SCHEDULER_SOURCES})
+add_dependencies(scheduler taskflow_proto)
 target_link_libraries(scheduler taskflow_common pthread)
 
 set(WORKER_SOURCES
     src/worker.cpp
 )
 add_executable(worker ${WORKER_SOURCES})
+add_dependencies(worker taskflow_proto)
 target_link_libraries(worker taskflow_common pthread)
 
 set(TRACKER_SOURCES
     src/tracker.cpp
 )
 add_executable(tracker ${TRACKER_SOURCES})
+add_dependencies(tracker taskflow_proto)
 target_link_libraries(tracker taskflow_common pthread)
 
 set(STATS_SOURCES
     src/stats.cpp
 )
 add_executable(stats ${STATS_SOURCES})
+add_dependencies(stats taskflow_proto)
 target_link_libraries(stats taskflow_common pthread)
 
 enable_testing()
