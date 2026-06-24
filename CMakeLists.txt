@@ -180,7 +180,6 @@ set(SCHEDULER_SOURCES
     src/scheduler.cpp
     src/scheduler/load_balancer.cpp
     src/scheduler/task_dispatcher.cpp
-    src/scheduler/worker_manager.cpp
 )
 add_executable(scheduler ${SCHEDULER_SOURCES})
 add_dependencies(scheduler taskflow_proto)
