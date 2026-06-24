@@ -132,7 +132,7 @@ private:
     std::shared_ptr<taskflow::LoadBalancer> load_balancer_;
 };
 
-class WorkerServiceImpl final : public WorkerService::Service {
+class WorkerServiceImpl final : public taskflow::WorkerService::Service {
 public:
     WorkerServiceImpl(std::shared_ptr<taskflow::TaskDispatcher> dispatcher,
                       std::shared_ptr<taskflow::LoadBalancer> load_balancer)
@@ -140,8 +140,8 @@ public:
     }
     
     grpc::Status ExecuteTask(grpc::ServerContext* context,
-                             const ExecuteTaskRequest* request,
-                             ExecuteTaskReply* reply) override {
+                             const taskflow::ExecuteTaskRequest* request,
+                             taskflow::ExecuteTaskReply* reply) override {
         reply->set_task_id(request->task_id());
         reply->set_success(true);
         reply->set_result("Task executed");
@@ -149,8 +149,8 @@ public:
     }
     
     grpc::Status Heartbeat(grpc::ServerContext* context,
-                          const HeartbeatRequest* request,
-                          HeartbeatReply* reply) override {
+                          const taskflow::HeartbeatRequest* request,
+                          taskflow::HeartbeatReply* reply) override {
         std::string worker_id = request->worker_id();
         int current_load = request->current_load();
         

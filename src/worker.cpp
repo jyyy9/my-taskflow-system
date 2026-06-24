@@ -243,7 +243,6 @@ int main(int argc, char* argv[]) {
     std::thread heartbeat_thread(heartbeatLoop, config, redis);
     
     grpc::EnableDefaultHealthCheckService(true);
-    grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     
     std::string addr = "0.0.0.0:" + std::to_string(config.port);
     
