@@ -153,6 +153,7 @@ target_link_libraries(taskflow_common
     ${GRPC_LIBRARIES}
     taskflow_proto
     hiredis
+    curl
 )
 
 if(TARGET spdlog::spdlog)
@@ -169,6 +170,7 @@ endif()
 
 set(GATEWAY_SOURCES
     src/gateway.cpp
+    src/gateway/http_handler.cpp
 )
 add_executable(gateway ${GATEWAY_SOURCES})
 add_dependencies(gateway taskflow_proto)

@@ -107,11 +107,13 @@ struct TrackerConfig {
 struct StatsConfig {
     int port;
     std::string redis_addr;
+    std::string etcd_endpoints;
     int collection_interval;
     std::string log_level;
     std::string log_dir;
     
     StatsConfig() : port(50054), redis_addr("localhost:6379"),
+                    etcd_endpoints("localhost:2379"),
                     collection_interval(10), log_level("info"), log_dir("./logs") {}
 };
 
