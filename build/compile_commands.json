@@ -1,0 +1,67 @@
+[
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++  -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_proto.dir/proto/taskflow.pb.cc.o -c /home/wangjiayi/my-taskflow-system/build/proto/taskflow.pb.cc",
+  "file": "/home/wangjiayi/my-taskflow-system/build/proto/taskflow.pb.cc"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++  -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_proto.dir/proto/taskflow.grpc.pb.cc.o -c /home/wangjiayi/my-taskflow-system/build/proto/taskflow.grpc.pb.cc",
+  "file": "/home/wangjiayi/my-taskflow-system/build/proto/taskflow.grpc.pb.cc"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_common.dir/src/common/circuit_breaker.cpp.o -c /home/wangjiayi/my-taskflow-system/src/common/circuit_breaker.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/common/circuit_breaker.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_common.dir/src/common/config_loader.cpp.o -c /home/wangjiayi/my-taskflow-system/src/common/config_loader.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/common/config_loader.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_common.dir/src/common/etcd_client.cpp.o -c /home/wangjiayi/my-taskflow-system/src/common/etcd_client.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/common/etcd_client.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_common.dir/src/common/logger.cpp.o -c /home/wangjiayi/my-taskflow-system/src/common/logger.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/common/logger.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_common.dir/src/common/redis_client.cpp.o -c /home/wangjiayi/my-taskflow-system/src/common/redis_client.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/common/redis_client.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/taskflow_common.dir/src/common/snowflake.cpp.o -c /home/wangjiayi/my-taskflow-system/src/common/snowflake.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/common/snowflake.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/gateway.dir/src/gateway.cpp.o -c /home/wangjiayi/my-taskflow-system/src/gateway.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/gateway.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/scheduler.dir/src/scheduler.cpp.o -c /home/wangjiayi/my-taskflow-system/src/scheduler.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/scheduler.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/worker.dir/src/worker.cpp.o -c /home/wangjiayi/my-taskflow-system/src/worker.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/worker.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/tracker.dir/src/tracker.cpp.o -c /home/wangjiayi/my-taskflow-system/src/tracker.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/tracker.cpp"
+},
+{
+  "directory": "/home/wangjiayi/my-taskflow-system/build",
+  "command": "/usr/bin/c++ -DFMT_LOCALE -DFMT_SHARED -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -I/home/wangjiayi/my-taskflow-system/include -I/home/wangjiayi/my-taskflow-system/build/proto -O3 -DNDEBUG -std=gnu++11 -o CMakeFiles/stats.dir/src/stats.cpp.o -c /home/wangjiayi/my-taskflow-system/src/stats.cpp",
+  "file": "/home/wangjiayi/my-taskflow-system/src/stats.cpp"
+}
+]
