@@ -43,6 +43,7 @@ private:
     bool handleGetStatus(const HttpRequest& request, HttpResponse& response);
     bool handleGetWorkers(const HttpRequest& request, HttpResponse& response);
     bool handleGetStats(const HttpRequest& request, HttpResponse& response);
+    bool handleGetQueueStatus(const HttpRequest& request, HttpResponse& response);
     bool handleHealthCheck(const HttpRequest& request, HttpResponse& response);
     
     std::string parseQueryParam(const std::string& query, const std::string& key);
